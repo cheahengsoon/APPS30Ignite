@@ -1,7 +1,8 @@
 # APPS30Ignite
 Personal Note for Apps30 Modernizing Your Application with Containers
 
-1.Create CosmoDB and SQL Server via create-db2.sh
+1.Create CosmoDB and SQL Server via create-db2.sh 
+**Please edit by using Notepad, not Notepad++**
 ````
 #!/bin/bash
 set -e
@@ -85,3 +86,8 @@ productImagesUrl="https://raw.githubusercontent.com/microsoft/TailwindTraders-Ba
 ````
 10. View webapp url and verify running app
 ![Image of Apps30Result](https://github.com/cheahengsoon/APPS30Ignite/blob/master/Apps30Result.png)
+
+11. Delete the Resource Group.
+
+**References:**
+[Azure Learning Path](https://github.com/microsoft/ignite-learning-paths/tree/master/apps/apps30)
