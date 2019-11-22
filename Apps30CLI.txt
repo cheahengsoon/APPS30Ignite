@@ -1,0 +1,40 @@
+
+az account set --subscription "Microsoft Azure Sponsorship 2019-2020"
+
+** Use the C:\Users\engsooncheah\Downloads\ignite-learning-paths-master\ignite-learning-paths-master\apps\apps30\create-db2.sh
+1. Create Resource group
+az group create --subscription "Microsoft Azure Sponsorship 2019-2020" --name 002igniteapps30 --location eastus
+
+2.VNET Creation
+az network vnet create --name 002igniteapps30vnet --subscription  "Microsoft Azure Sponsorship 2019-2020" --resource-group 002igniteapps30 --subnet-name default
+
+3.Show VNET in portal?
+
+4.Create MS SQL Azure Server and then DB (portal)
+az sql server create --location eastus --resource-group 002igniteapps30 --name 002igniteapps30db --admin-user 002igniteapps30admin --admin-password yjtham251314@ --subscription "Microsoft Azure Sponsorship 2019-2020"
+az sql server firewall-rule create --resource-group 002igniteapps30 --server 002igniteapps30db --name azure --start-ip-address 0.0.0.0 --end-ip-address 0.0.0.0 --subscription "Microsoft Azure Sponsorship 2019-2020"
+az sql db create --resource-group 002igniteapps30 --server 002igniteapps30db --name tailwind --subscription "Microsoft Azure Sponsorship 2019-2020"
+
+5.Create Azure Cosmos DB instance (portal)
+az cosmosdb create --name 002igniteapps30cosmodb --resource-group 002igniteapps30 --kind MongoDB --subscription "Microsoft Azure Sponsorship 2019-2020" 
+
+6.Create Azure Container Registry
+az acr create --resource-group 002igniteapps30 --name 002igniteapps30acr --sku Basic --subscription  "Microsoft Azure Sponsorship 2019-2020" --admin-enabled true
+
+7. Clone the repo in cloud shell
+mkdir 002igniteapps30
+git clone https://github.com/anthonychu/TailwindTraders-Website.git 002igniteapps30/ 
+cd 002igniteapps30/Source/Tailwind.Traders.Web
+git checkout monolith 
+
+8.Create app service plan
+az appservice plan create --name 002igniteapps30plan --resource-group 002igniteapps30 --sku B1 --is-linux --subscription  "Microsoft Azure Sponsorship 2019-2020"
+
+9. Build and push container
+az acr build --subscription  "Microsoft Azure Sponsorship 2019-2020" --registry 002igniteapps30acr --image twtapp:v1 .
+
+10. Create web app
+az webapp create  --subscription  "Microsoft Azure Sponsorship 2019-2020" --resource-group 002igniteapps30 --plan 002igniteapps30plan --name 002twtwebapp30 --deployment-container-image-name 002igniteapps30acr.azurecr.io/twtapp:v1
+
+11.
+
